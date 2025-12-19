@@ -1,0 +1,58 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  bot-factory:
+    build: .
+    container_name: bona-bot-factory
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/bona_db
+      - USE_POSTGRES=true
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./storage:/app/storage
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - bona-network
+
+  db:
+    image: postgres:15-alpine
+    container_name: bona-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=bona_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - bona-network
+
+  admin-panel:
+    build: .
+    container_name: bona-admin-panel
+    restart: unless-stopped
+    command: python web/admin_panel.py
+    env_file:
+      - .env
+    ports:
+      - "8081:8081"
+    depends_on:
+      - bot-factory
+    networks:
+      - bona-network
+
+volumes:
+  postgres_data:
+
+networks:
+  bona-network:
+    driver: bridge
