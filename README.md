@@ -48,5 +48,5 @@
 
 1. **রিপোজিটরি ক্লোন করুন**
 ```bash
-git clone https://github.com/yourusername/bona-bot-builder.git
+git clone https://github.com/master-pd/bona-bot-builder.git
 cd bona-bot-builder
