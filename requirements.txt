@@ -3,13 +3,13 @@ aiogram==3.0.0b7
 sqlalchemy==2.0.23
 alembic==1.12.1
 python-dotenv==1.0.0
-cryptography==41.0.7
+cryptography==44.0.1
 bcrypt==4.0.1
 schedule==1.2.0
 pytz==2023.3
-aiohttp==3.9.1
+aiohttp==3.12.14
 psutil==5.9.7
 pydantic==2.5.0
 pydantic-settings==2.1.0
-python-multipart==0.0.6
+python-multipart==0.0.18
 ujson==5.8.0
