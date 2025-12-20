@@ -75,3 +75,6 @@ class Settings:
     # Admin Panel
     ADMIN_PANEL_PORT = int(os.getenv("ADMIN_PANEL_PORT", 8080))
     ADMIN_PANEL_HOST = os.getenv("ADMIN_PANEL_HOST", "0.0.0.0")
+
+# config/settings.py ফাইলের শেষে এই লাইন যোগ করুন:
+settings = Settings()
